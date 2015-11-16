@@ -1,0 +1,10 @@
+{
+	"accessToken":"%s(accessToken)",
+	"apiUrl":"%s(apiUrl)",
+	"format":"json",
+	"productId":"%s(productId)",
+	"product": {
+		"title": "%s(updateProductTitle)",
+		"product_type": "%s(updateProductType)"
+	}
+}

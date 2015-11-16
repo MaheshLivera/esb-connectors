@@ -1,0 +1,10 @@
+{
+    "accessToken":"%s(accessToken)",
+    "apiUrl":"%s(apiUrl)",
+    "format":"json",
+    "orderId":"INVALID",
+    "order": {
+    	"tags" : "%s(updateOrderTag)",
+    	"note": "%s(updateOrderNote)"
+  	}
+}

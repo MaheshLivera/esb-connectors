@@ -16,30 +16,29 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<!-- Method Documentation URL:https://docs.shopify.com/api/fulfillment#create -->
-<template name="createFulfillment" xmlns="http://ws.apache.org/ns/synapse">
-   <parameter name="orderId" description="The unique numeric identifier for order" />
-   <parameter name="fulfillment" description="An object containing the fulfillment details " />
+<!-- Method Documentation URL:https://docs.shopify.com/api/order#update -->
+<template name="updateOrder" xmlns="http://ws.apache.org/ns/synapse">
+   <parameter name="order" description="Order details that is to be updated." />
+   <parameter name="orderId" description="Id of the product that is updated." />
    <sequence>
+      <property name="uri.var.order" expression="$func:order" />
       <property name="uri.var.orderId" expression="$func:orderId" />
-      <property name="uri.var.fulfillment" expression="$func:fulfillment" />
       <payloadFactory media-type="json">
          <format>
             {
-            "fulfillment": $1
+            "order": $1
             }
          </format>
          <args>
-            <arg expression="get-property('uri.var.fulfillment')" />
+            <arg expression="get-property('uri.var.order')" />
          </args>
       </payloadFactory>
       <call>
          <endpoint>
-            <http method="post" uri-template="{uri.var.apiUrl}/admin/orders/{uri.var.orderId}/fulfillments.{uri.var.format}" />
+            <http method="put" uri-template="{uri.var.apiUrl}/admin/orders/{uri.var.orderId}.{uri.var.format}" />
          </endpoint>
       </call>
       <!-- Removing custom headers -->
-      <header name="WWW-Authenticate" action="remove" scope="transport" />
       <header name="X-XSS-Protection" action="remove" scope="transport" />
       <header name="X-UA-Compatible" action="remove" scope="transport" />
       <header name="X-Request-Id" action="remove" scope="transport" />
@@ -55,6 +54,7 @@
       <header name="X-Served-With" action="remove" scope="transport" />
       <header name="X-ShardId" action="remove" scope="transport" />
       <header name="X-Shopify-Shop-Api-Call-Limit" action="remove" scope="transport" />
+      <header name="WWW-Authenticate" action="remove" scope="transport" />
       <header name="X-Stats-Validation-Errors" action="remove" scope="transport" />
       <header name="P3P" action="remove" scope="transport" />
       <header name="X-Dc" action="remove" scope="transport" />

@@ -16,30 +16,31 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<!-- Method Documentation URL:https://docs.shopify.com/api/fulfillment#create -->
-<template name="createFulfillment" xmlns="http://ws.apache.org/ns/synapse">
-   <parameter name="orderId" description="The unique numeric identifier for order" />
-   <parameter name="fulfillment" description="An object containing the fulfillment details " />
+<!-- API Documentation URL - https://docs.shopify.com/api/order#show -->
+<template name="getOrderById" xmlns="http://ws.apache.org/ns/synapse">
+   <parameter name="orderId" description="The order Id is used to retrieve order details for one specific order." />
+   <parameter name="fields" description="Comma separated list of fields to include in the response." />
    <sequence>
       <property name="uri.var.orderId" expression="$func:orderId" />
-      <property name="uri.var.fulfillment" expression="$func:fulfillment" />
-      <payloadFactory media-type="json">
-         <format>
-            {
-            "fulfillment": $1
-            }
-         </format>
-         <args>
-            <arg expression="get-property('uri.var.fulfillment')" />
-         </args>
-      </payloadFactory>
+      <property name="uri.var.fields" expression="$func:fields" />
+      <script language="js">
+		<![CDATA[ 
+			// Generate url with parameters
+			var fields = mc.getProperty('uri.var.fields');
+			var urlQuery = '';
+			// Append optional query parameters
+			if(fields != null && fields != "") {
+			   urlQuery += '?fields=' + encodeURIComponent(fields);
+			}
+			mc.setProperty('uri.var.urlQuery', urlQuery);		
+		]]>
+      </script>
       <call>
          <endpoint>
-            <http method="post" uri-template="{uri.var.apiUrl}/admin/orders/{uri.var.orderId}/fulfillments.{uri.var.format}" />
+            <http method="get" uri-template="{uri.var.apiUrl}/admin/orders/{uri.var.orderId}.{uri.var.format}{uri.var.urlQuery}" />
          </endpoint>
       </call>
       <!-- Removing custom headers -->
-      <header name="WWW-Authenticate" action="remove" scope="transport" />
       <header name="X-XSS-Protection" action="remove" scope="transport" />
       <header name="X-UA-Compatible" action="remove" scope="transport" />
       <header name="X-Request-Id" action="remove" scope="transport" />
@@ -55,6 +56,7 @@
       <header name="X-Served-With" action="remove" scope="transport" />
       <header name="X-ShardId" action="remove" scope="transport" />
       <header name="X-Shopify-Shop-Api-Call-Limit" action="remove" scope="transport" />
+      <header name="WWW-Authenticate" action="remove" scope="transport" />
       <header name="X-Stats-Validation-Errors" action="remove" scope="transport" />
       <header name="P3P" action="remove" scope="transport" />
       <header name="X-Dc" action="remove" scope="transport" />
