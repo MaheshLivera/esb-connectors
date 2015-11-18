@@ -1,0 +1,6 @@
+{
+	"product": {
+		"title": "%s(updateProductTitle)",
+		"product_type": "%s(updateProductType)"
+	}
+}

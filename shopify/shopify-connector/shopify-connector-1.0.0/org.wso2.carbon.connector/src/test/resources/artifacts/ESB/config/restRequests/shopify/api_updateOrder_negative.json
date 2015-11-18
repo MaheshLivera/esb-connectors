@@ -1,0 +1,6 @@
+{
+    "order": {
+    "tags" : "%s(updateOrderTag)",
+    "note": "%s(updateOrderNote)"
+  	}
+}
