@@ -63,7 +63,7 @@ Steps to follow in setting integration test.
    iv) Navigate to "{SHOPIFY_CONNECTOR_HOME}/shopify-connector/shopify-connector-1.0.0/org.wso2.carbon.connector/src/test/resources/keystores/products/" using command prompt and execute keytool -importcert -file CERT_FILE_NAME -keystore wso2carbon.jks -alias "CERT_NAME" in command line to import Shopify certificate in to keystore.
       Give "wso2carbon" as password.
       
-      NOTE : CERT_FILE_NAME is the file name which was extracted from Shopify, change it accordingly. (e.g. *.Shopify.com)
+      NOTE : CERT_FILE_NAME is the file name which was extracted from Shopify, change it accordingly. (e.g. *.myshopify.com)
             CERT_NAME is an arbitrary name for the certificate. (e.g. Shopify)
 
  7. Compress modified ESB as wso2esb-4.9.0.zip and copy that zip file in to location "{ESB_CONNECTOR_HOME}/repository/".
