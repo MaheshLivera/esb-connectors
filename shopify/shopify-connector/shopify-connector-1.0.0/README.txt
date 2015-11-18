@@ -57,7 +57,7 @@ Steps to follow in setting integration test.
    iii)Navigate to "<ESB_HOME>/repository/resources/security/" using command prompt and execute keytool -importcert -file CERT_FILE_NAME -keystore client-truststore.jks -alias "CERT_NAME" in command line to import Shopify certificate in to keystore. 
        Give "wso2carbon" as password. Press "Y" to complete certificate import process.
        
-      NOTE : CERT_FILE_NAME is the file name which was extracted from Shopify. (e.g. *.Shopify.com)
+      NOTE : CERT_FILE_NAME is the file name which was extracted from Shopify. (e.g. *.myshopify.com)
              CERT_NAME is an arbitrary name for the certificate. (e.g. Shopify)
             
    iv) Navigate to "{SHOPIFY_CONNECTOR_HOME}/shopify-connector/shopify-connector-1.0.0/org.wso2.carbon.connector/src/test/resources/keystores/products/" using command prompt and execute keytool -importcert -file CERT_FILE_NAME -keystore wso2carbon.jks -alias "CERT_NAME" in command line to import Shopify certificate in to keystore.
